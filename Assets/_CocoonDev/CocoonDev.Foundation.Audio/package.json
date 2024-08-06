@@ -1,0 +1,14 @@
+{
+    "name": "com.cocoondev.foundation.audio",
+    "displayName": "CocoonDev.Foundation.Audio",
+    "version": "1.0.0",
+    "unity": "2022.3",
+    "documentationUrl": "https://github.com/thanhloccc/CocoonDev.Foundation/blob/main/README.md",
+    "dependencies": {
+        "org.nuget.system.runtime.compilerservices.unsafe": "6.0.0",
+        "com.cysharp.unitask": "2.5.5",
+        "com.zbase.collections.pooled": "2.8.4",
+        "com.zbase.foundation.pooling": "2.3.3"
+    },
+    "type": "library"
+}

@@ -1,0 +1,14 @@
+{
+    "name": "CocoonDev.Foundation.Audio",
+    "rootNamespace": "CocoonDev.Foundation.Audio",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
