@@ -1,4 +1,3 @@
-using UnityEngine.Audio;
 using UnityEngine;
 
 namespace CocoonDev.Foundation.Audio
@@ -9,8 +8,8 @@ namespace CocoonDev.Foundation.Audio
         public string identifier;
         public bool loop;
         public bool frequentSound;
+        public OutputID outputID;
         public AudioClip[] clips;
-        public AudioMixerGroup mixerGroup;
 
         public AudioClip GetClip()
         {

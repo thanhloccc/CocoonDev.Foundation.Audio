@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: SoundDataCollection
   m_EditorClassIdentifier: 
   _soundDatas: []
-  _soundDataGroups: []
   _enumName: SoundID
   _namespaceName: CocoonDev.Foundation.Audio
-  _enumFilePath: Assets/_CocoonDev/CocoonDev.Foundation.Audio/Runtime/Core/
+  _enumFilePath: Assets/_CocoonDev/CocoonDev.Foundation.Audio/Runtime/Core/Common/

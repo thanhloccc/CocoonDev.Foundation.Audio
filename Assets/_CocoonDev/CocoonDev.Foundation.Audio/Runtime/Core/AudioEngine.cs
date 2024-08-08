@@ -94,36 +94,33 @@ namespace CocoonDev.Foundation.Audio
                 s_instance.ConfigureDefaultAudioWrapperSettings(instance);
                 await instance.WithVolumePercentage(volumePercentage)
                     .WithLoop(data.loop)
-                    .WithOutput(data.mixerGroup == null 
-                        ? s_instance._audioMixerGroupDefault 
-                        : data.mixerGroup)
+                    .WithOutput(GetAudioMixerGroup(data.outputID))
                     .PlayAsync(data.GetClip());
             }
         }
 
-        //public static void PlaySmartSound(SoundID soundID, float volumePercentage)
-        //{
-        //    PlaySmartSoundTask(soundID, volumePercentage).Forget();
-        //}
+        public static AudioMixerGroup GetAudioMixerGroup(OutputID outputID)
+        {
+            if (s_instance._audioToolsLibrary.CacheOutputDataById.TryGetValue(outputID, out var data))
+            {
+                return data.mixerGroup;
+            }
 
-        //public static async UniTaskVoid PlaySmartSoundTask(SoundID soundID, float volumePercentage)
-        //{
-        //    await PlaySmartSoundAsync(soundID, volumePercentage);
-        //}
+            return s_instance._audioMixerGroupDefault;
+        }
 
-        //public static async UniTask PlaySmartSoundAsync(SoundID soundID, float volumePercentage)
-        //{
-        //    if (TryGetSoundDataById(soundID, out var data))
-        //    {
-        //        var instance = await Get();
 
-        //        s_instance.ConfigureDefaultAudioWrapperSettings(instance);
-        //        instance.WithVolumePercentage(volumePercentage)
-        //            .WithLoop(data.loop)
-        //            .WithOutput(data.mixerGroup)
-        //            .Play(data.GetClip());
-        //    }
-        //}
+        public static bool TryGetAudioMixerGroup(OutputID outputID, AudioMixerGroup mixerGroup)
+        {
+            if(s_instance._audioToolsLibrary.CacheOutputDataById.TryGetValue(outputID, out var data))
+            {
+                mixerGroup = data.mixerGroup;
+                return true;
+            }
+
+            mixerGroup = s_instance._audioMixerGroupDefault;
+            return false;
+        }
 
         public static bool TryGetSoundDataById(SoundID id, out SoundData soundData)
         {

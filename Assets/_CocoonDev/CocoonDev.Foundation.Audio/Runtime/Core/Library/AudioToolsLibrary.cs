@@ -10,13 +10,17 @@ namespace CocoonDev.Foundation.Audio
         [Title("Loader", titleAlignment: TitleAlignments.Centered)]
         [SerializeField, Required]
         private SoundDataCollection _soundDataCollection;
+        [SerializeField, Required]
+        private OutputDataCollection _outputDataCollection;
 
         [Title("Debug Info", titleAlignment: TitleAlignments.Centered)]
         [ShowInInspector, ReadOnly]
         public Dictionary<SoundID, SoundData> CacheSoundDataById { get; private set; }
 
-        [ShowInInspector, ReadOnly]
-        public Dictionary<MusicID, SoundData> CacheMusicDataById { get; private set; }
+        //[ShowInInspector, ReadOnly]
+        //public Dictionary<MusicID, SoundData> CacheMusicDataById { get; private set; }
+
+        public Dictionary<OutputID, OutputData> CacheOutputDataById { get; private set; }
 
         public void Initialize()
         {
@@ -26,6 +30,13 @@ namespace CocoonDev.Foundation.Audio
             for (int i = 0; i < soundIdValues.Count; i++)
             {
                 CacheSoundDataById.Add(soundIdValues[i], _soundDataCollection.SoundDatas.Span[i]);
+            }
+
+            var outputIdValues = UniEnum.UniEnum.GetValues<OutputID>();
+            CacheOutputDataById = new();
+            for(int i = 0;i < outputIdValues.Count; i++)
+            {
+                CacheOutputDataById.Add(outputIdValues[i], _outputDataCollection.OutputData.Span[i]);
             }
         }
 
