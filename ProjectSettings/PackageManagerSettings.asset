@@ -34,8 +34,6 @@ MonoBehaviour:
     - com.cysharp.unitask
     - com.zbase.collections.pooled
     - com.zbase.foundation.pooling
-    - com.annulusgames.tween-playables
-    - com.cysharp.zstring
     m_IsDefault: 0
     m_Capabilities: 0
     m_ConfigSource: 4

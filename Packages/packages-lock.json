@@ -1,5 +1,21 @@
 {
   "dependencies": {
+    "com.cocoondev.foundation.unienum": {
+      "version": "https://github.com/thanhloccc/CocoonDev.Foundation.UniEnum.git?path=Assets/_CocoonDev/CocoonDev.Foundation.UniEnum",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "org.nuget.system.runtime.compilerservices.unsafe": "6.0.0"
+      },
+      "hash": "9908187e32703af906e9d15bad1ec74e0d70002d"
+    },
+    "com.cysharp.unitask": {
+      "version": "2.5.5",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.kyrylokuzyk.primetween": {
       "version": "file:../Assets/Plugins/PrimeTween/internal/com.kyrylokuzyk.primetween.tgz",
       "depth": 0,
@@ -140,6 +156,33 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.zbase.collections.pooled": {
+      "version": "2.8.4",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.runtime.compilerservices.unsafe": "6.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.zbase.foundation.pooling": {
+      "version": "2.3.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.runtime.compilerservices.unsafe": "6.0.0",
+        "com.cysharp.unitask": "2.3.3",
+        "com.zbase.collections.pooled": "2.8.1"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "org.nuget.system.runtime.compilerservices.unsafe": {
+      "version": "6.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

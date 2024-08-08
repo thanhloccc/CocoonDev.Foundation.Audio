@@ -1,7 +1,12 @@
 {
     "name": "CocoonDev.Foundation.Audio",
     "rootNamespace": "CocoonDev.Foundation.Audio",
-    "references": [],
+    "references": [
+        "UniTask",
+        "ZBase.Foundation.Pooling",
+        "CocoonDev.Foundation.UniEnum",
+        "PrimeTween.Runtime"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
