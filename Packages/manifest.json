@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.cocoondev.foundation.unienum": "https://github.com/thanhloccc/CocoonDev.Foundation.UniEnum.git?path=Assets/_CocoonDev/CocoonDev.Foundation.UniEnum",
     "com.cysharp.unitask": "2.5.5",
     "com.kyrylokuzyk.primetween": "file:../Assets/Plugins/PrimeTween/internal/com.kyrylokuzyk.primetween.tgz",
     "com.unity.collab-proxy": "2.4.4",

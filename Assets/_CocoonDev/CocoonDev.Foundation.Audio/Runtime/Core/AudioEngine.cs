@@ -27,6 +27,8 @@ namespace CocoonDev.Foundation.Audio
 
         private bool _initilized;
 
+        private float _volume = 1;
+
         private static ComponentPool<AudioWrapper, ComponentPrefab<AudioWrapper>> s_pool;
         private static readonly LinkedList<AudioWrapper> s_frequentSoundEmitters = new();
 
@@ -75,6 +77,21 @@ namespace CocoonDev.Foundation.Audio
             });
         }
 
+        public void ReleasStream()
+        {
+
+        }
+
+        public void ToggleSound(bool toggle)
+        {
+            _volume = toggle ? 1 : 0;
+        }
+
+        public void StopAll()
+        {
+
+        }
+
         public static void PlaySound(SoundID soundID, float volumePercentage)
         {
             PlaySoundTask(soundID, volumePercentage).Forget();
@@ -110,7 +127,7 @@ namespace CocoonDev.Foundation.Audio
         }
 
 
-        public static bool TryGetAudioMixerGroup(OutputID outputID, AudioMixerGroup mixerGroup)
+        private static bool TryGetAudioMixerGroup(OutputID outputID, AudioMixerGroup mixerGroup)
         {
             if(s_instance._audioToolsLibrary.CacheOutputDataById.TryGetValue(outputID, out var data))
             {
@@ -122,7 +139,7 @@ namespace CocoonDev.Foundation.Audio
             return false;
         }
 
-        public static bool TryGetSoundDataById(SoundID id, out SoundData soundData)
+        private static bool TryGetSoundDataById(SoundID id, out SoundData soundData)
         {
             if (s_instance._audioToolsLibrary.CacheSoundDataById.TryGetValue(id, out soundData))
             {
@@ -144,18 +161,18 @@ namespace CocoonDev.Foundation.Audio
 
         public static void ReturnToPool(AudioWrapper instance)
         {
-            if (instance.Node != null)
-            {
-                s_frequentSoundEmitters.Remove(instance.Node);
-                instance.Node = null;
-            }
+            //if (instance.Node != null)
+            //{
+            //    s_frequentSoundEmitters.Remove(instance.Node);
+            //    instance.Node = null;
+            //}
 
             s_pool.Return(instance);
         }
 
         private void ConfigureDefaultAudioWrapperSettings(AudioWrapper instance)
         {
-            float volume = 1;
+            float volume = _volume;
 
             instance.WithVolume(volume)
                 .WithPitch(1.0F)

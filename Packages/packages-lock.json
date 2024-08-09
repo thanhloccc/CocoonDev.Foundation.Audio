@@ -1,14 +1,5 @@
 {
   "dependencies": {
-    "com.cocoondev.foundation.unienum": {
-      "version": "https://github.com/thanhloccc/CocoonDev.Foundation.UniEnum.git?path=Assets/_CocoonDev/CocoonDev.Foundation.UniEnum",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "org.nuget.system.runtime.compilerservices.unsafe": "6.0.0"
-      },
-      "hash": "9908187e32703af906e9d15bad1ec74e0d70002d"
-    },
     "com.cysharp.unitask": {
       "version": "2.5.5",
       "depth": 0,

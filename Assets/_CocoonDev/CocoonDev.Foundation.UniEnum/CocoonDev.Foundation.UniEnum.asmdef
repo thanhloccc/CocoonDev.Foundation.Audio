@@ -1,0 +1,14 @@
+{
+    "name": "CocoonDev.Foundation.UniEnum",
+    "rootNamespace": "CocoonDev.Foundation.UniEnum",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
