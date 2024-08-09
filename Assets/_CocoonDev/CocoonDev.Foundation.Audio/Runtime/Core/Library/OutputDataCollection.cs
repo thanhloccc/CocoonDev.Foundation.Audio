@@ -23,11 +23,12 @@ namespace CocoonDev.Foundation.Audio
         [SerializeField, ReadOnly]
         private string _enumFilePath = "Assets/_CocoonDev/CocoonDev.Foundation.Audio/Runtime/Core/Common/";
 
-        public ReadOnlyMemory<OutputData> OutputData
+        public OutputData[] OutputData
         {
             get => _outputDatas;
         }
 
+#if UNITY_EDITOR
         [Button(buttonSize: 35), GUIColor("Yellow")]
         public void CodeGen()
         {
@@ -53,4 +54,5 @@ namespace CocoonDev.Foundation.Audio
             }
         }
     }
+#endif
 }

@@ -13,7 +13,7 @@ namespace CocoonDev.Foundation.Audio
 
         [Title("Libraries", titleAlignment: TitleAlignments.Centered)]
         [SerializeField]
-        private AudioToolsLibrary _audioToolsLibrary;
+        private static AudioToolsLibrary s_audioToolsLibrary;
         [SerializeField]
         private AudioMixerGroup _audioMixerGroupDefault;
 
@@ -25,16 +25,24 @@ namespace CocoonDev.Foundation.Audio
         [SerializeField]
         private AudioWrapper _sourcePool;
 
-        private bool _initilized;
+        private static bool s_initilized;
 
         private float _volume = 1;
 
         private static ComponentPool<AudioWrapper, ComponentPrefab<AudioWrapper>> s_pool;
-        private static readonly LinkedList<AudioWrapper> s_frequentSoundEmitters = new();
+        private static LinkedList<AudioWrapper> s_frequentSoundEmitters = new();
+#if UNITY_EDITOR
+        /// <seealso href="https://docs.unity3d.com/Manual/DomainReloading.html"/>
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void Init()
+        {
+            s_initilized = false;
+        }
+#endif
 
         private void Awake()
         {
-            if (_initilized)
+            if (s_initilized)
                 return;
             s_instance = this;
 
@@ -42,7 +50,7 @@ namespace CocoonDev.Foundation.Audio
             InitializePool();
             OnAwake();
 
-            _initilized = true;
+            s_initilized = true;
         }
 
         private async void Start()
@@ -66,7 +74,7 @@ namespace CocoonDev.Foundation.Audio
 
         private void OnInitialize()
         {
-            _audioToolsLibrary.Initialize();
+            s_audioToolsLibrary.Initialize();
         }
         private void InitializePool()
         {
@@ -92,17 +100,17 @@ namespace CocoonDev.Foundation.Audio
 
         }
 
-        public static void PlaySound(SoundID soundID, float volumePercentage)
+        public static void PlaySound(SoundID soundID, float volumePercentage = 1)
         {
             PlaySoundTask(soundID, volumePercentage).Forget();
         }
 
-        public static async UniTaskVoid PlaySoundTask(SoundID soundID, float volumePercentage)
+        public static async UniTaskVoid PlaySoundTask(SoundID soundID, float volumePercentage = 1)
         {
             await PlaySoundAsync(soundID, volumePercentage);
         }
 
-        public static async UniTask PlaySoundAsync(SoundID soundID, float volumePercentage)
+        public static async UniTask PlaySoundAsync(SoundID soundID, float volumePercentage = 1)
         {
             if (TryGetSoundDataById(soundID, out var data))
             {
@@ -118,7 +126,7 @@ namespace CocoonDev.Foundation.Audio
 
         public static AudioMixerGroup GetAudioMixerGroup(OutputID outputID)
         {
-            if (s_instance._audioToolsLibrary.CacheOutputDataById.TryGetValue(outputID, out var data))
+            if (s_audioToolsLibrary.CacheOutputDataById.TryGetValue(outputID, out var data))
             {
                 return data.mixerGroup;
             }
@@ -129,7 +137,7 @@ namespace CocoonDev.Foundation.Audio
 
         private static bool TryGetAudioMixerGroup(OutputID outputID, AudioMixerGroup mixerGroup)
         {
-            if(s_instance._audioToolsLibrary.CacheOutputDataById.TryGetValue(outputID, out var data))
+            if(s_audioToolsLibrary.CacheOutputDataById.TryGetValue(outputID, out var data))
             {
                 mixerGroup = data.mixerGroup;
                 return true;
@@ -141,7 +149,7 @@ namespace CocoonDev.Foundation.Audio
 
         private static bool TryGetSoundDataById(SoundID id, out SoundData soundData)
         {
-            if (s_instance._audioToolsLibrary.CacheSoundDataById.TryGetValue(id, out soundData))
+            if (s_audioToolsLibrary.CacheSoundDataById.TryGetValue(id, out soundData))
             {
                 return true;
             }
@@ -176,8 +184,7 @@ namespace CocoonDev.Foundation.Audio
 
             instance.WithVolume(volume)
                 .WithPitch(1.0F)
-                .WithSpatialSound(false) // 2D Sound
-                .WithOutput(null);
+                .WithSpatialSound(false); // 2D Sound
         }
     }
 }

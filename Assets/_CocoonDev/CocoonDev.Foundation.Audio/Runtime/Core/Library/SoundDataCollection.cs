@@ -23,11 +23,12 @@ namespace CocoonDev.Foundation.Audio
         [SerializeField, ReadOnly]
         private string _enumFilePath = "Assets/_CocoonDev/CocoonDev.Foundation.Audio/Runtime/Core/Common/";
 
-        public ReadOnlyMemory<SoundData> SoundDatas
+        public SoundData[] SoundDatas
         {
             get => _soundDatas;
         }
 
+#if UNITY_EDITOR
 
         [Button(buttonSize: 35), GUIColor("Yellow")]
         public void CodeGen()
@@ -48,23 +49,11 @@ namespace CocoonDev.Foundation.Audio
                 }
             }
 
-            //if (_soundDataGroups.IsNullOrEmpty())
-            //{
-            //    Debug.LogWarning("[AudioEngine]: The SoundDataGroups array is either null or empty");
-            //}
-            //else
-            //{
-            //    foreach (var soundGroup in _soundDataGroups)
-            //    {
-            //        enumValues[index] = soundGroup.identifier;
-            //        index++;
-            //    }
-            //}
-
             using (EnumExtensionsForGenerator sourceGen = new EnumExtensionsForGenerator())
             {
                 sourceGen.AddEnumValuesToEnum(_enumName, enumValues, _enumFilePath, _namespaceName);
             }
         }
     }
+#endif
 }

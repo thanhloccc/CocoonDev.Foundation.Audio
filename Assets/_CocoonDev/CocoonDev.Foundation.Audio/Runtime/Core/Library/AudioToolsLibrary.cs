@@ -29,14 +29,14 @@ namespace CocoonDev.Foundation.Audio
 
             for (int i = 0; i < soundIdValues.Count; i++)
             {
-                CacheSoundDataById.Add(soundIdValues[i], _soundDataCollection.SoundDatas.Span[i]);
+                CacheSoundDataById.Add(soundIdValues[i], _soundDataCollection.SoundDatas[i]);
             }
 
             var outputIdValues = UniEnum.UniEnum.GetValues<OutputID>();
             CacheOutputDataById = new();
             for(int i = 0;i < outputIdValues.Count; i++)
             {
-                CacheOutputDataById.Add(outputIdValues[i], _outputDataCollection.OutputData.Span[i]);
+                CacheOutputDataById.Add(outputIdValues[i], _outputDataCollection.OutputData[i]);
             }
         }
 
